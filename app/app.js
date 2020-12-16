@@ -6,7 +6,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 const Handlebars = require('handlebars');
-//const handleError = require('./middleware/handleError');
+const handleError = require('./middleware/handleError');
 const helmet = require('helmet');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const hpp = require('hpp');
@@ -18,7 +18,6 @@ const { RATE_LIMIT } = require('./config/config');
 const session = require('express-session');
 const { SESSION_EXP, SESSION_SECRET, ISDEV } = require('./config/config');
 const SessionMemory = require('memorystore')(session);
-//const checkResType = require('./middleware/checkResType');
 const xss = require('xss-clean');
 
 /**
@@ -85,9 +84,6 @@ app.use(session({
  })
 }));
 
-/* bootstrap js */
-app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
-
 /** 
  * @desc GLOBAL VARIABLES
  */
@@ -109,12 +105,8 @@ if (ISDEV) {
  * @desc LOAD ROUTES
  */
 
-// api
-app.use('/api/photos', require('./routes/api/photosRoutes'));
-app.use('/api/works', require('./routes/api/worksRoutes'));
-
 // client
-app.use('/', require('./routes/client/indexRoutes'));
+//app.use('/', require('./routes/client/indexRoutes'));
 
 /**
  * @desc ERROR HANDLING
