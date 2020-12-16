@@ -1,0 +1,70 @@
+{
+  "name": "express-starter",
+  "version": "1.0.0",
+  "description": "Express starter for MERN applications.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon -r dotenv/config server.js",
+    "css:dev": "node-sass scss/styles.scss app/public/css/styles.css --output-style expanded",
+    "css:watch": "node-sass scss/styles.scss app/public/css/styles.css --output-style expanded --watch",
+    "css:compile": "node-sass scss/styles.scss scss/raw.css",
+    "css:prefix": "postcss scss/raw.css --use autoprefixer --no-map -o scss/prefix.css",
+    "css:compress": "node-sass scss/prefix.css app/public/styles.css --output-style compressed",
+    "css:expanded": "node-sass scss/prefix.css app/public/styles.css --output-style expanded",
+    "css:build": "npm-run-all css:compile css:prefix css:expanded",
+    "css:production": "npm-run-all css:compile css:prefix css:compress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airgead73/express-starter.git"
+  },
+  "keywords": [
+    "mern",
+    "express",
+    "handlebars",
+    "template"
+  ],
+  "author": "dan moneypenny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airgead73/express-starter/issues"
+  },
+  "homepage": "https://github.com/airgead73/express-starter#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.0.2",
+    "bootstrap": "^4.5.3",
+    "dotenv": "^8.2.0",
+    "morgan": "^1.10.0",
+    "node-sass": "^5.0.0",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.1.9",
+    "postcss-cli": "^8.3.0"
+  },
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-mongo-sanitize": "^2.0.0",
+    "express-rate-limit": "^5.2.3",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.6.1",
+    "handlebars": "^4.7.6",
+    "helmet": "^4.2.0",
+    "hpp": "^0.2.3",
+    "http-errors": "^1.8.0",
+    "memorystore": "^1.6.4",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.15",
+    "xss-clean": "^0.1.1"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}
