@@ -1,0 +1,32 @@
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">bmadmin</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="{{navActive 'nav-item' 'works' titleStem}}">
+            <a class="nav-link" href="/works?sort=title">all works <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="{{navActive 'nav-item' 'sculpture' titleStem}}">
+            <a class="nav-link" href="/works?mode=sculpture&sort=title">sculpture</a>
+          </li>
+
+          <li class="{{navActive 'nav-item' 'painting' titleStem}}">
+            <a class="nav-link" href="/works?mode=painting&sort=title">painting</a>
+          </li>
+          <li class="{{navActive 'nav-item' 'drawing' titleStem}}">
+            <a class="nav-link" href="/works?mode=drawing&sort=title">drawing</a>
+          </li>
+          <li class="{{navActive 'nav-item' 'bio' titleStem}}">
+            <a class="nav-link" href="/bio">bio</a>
+          </li>
+        </ul>
+
+
+      </div>
+    </nav>
+  </header>

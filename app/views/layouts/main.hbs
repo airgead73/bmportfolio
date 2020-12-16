@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> _head}}
+
+<body class="d-flex flex-column min-vh-100">
+  {{> _header}}
+  <main class="flex-fill">
+  {{{body}}}
+  </main>
+  {{#if script_work}}  
+  {{> _scripts}}
+  {{/if}}
+</body>
+
+</html>
