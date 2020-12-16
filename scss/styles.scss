@@ -1,1 +1,8 @@
-@import './bs';
+@import './architecture/normalize';
+@import './architecture/variables';
+@import './architecture/mixins';
+@import './architecture/base';
+@import './architecture/layout';
+@import './architecture/modules/buttons';
+@import './architecture/modules/features';
+@import './architecture/modules/figures';

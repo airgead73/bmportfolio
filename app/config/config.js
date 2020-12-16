@@ -1,6 +1,6 @@
 module.exports = {
   PORT: process.env.PORT,
-  DB_DEV: process.env.DEV_MONGO_URI,
+  DB_DEV: process.env.MONGO_URI_DEV,
   DB: process.env.MONGO_URI,
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXP: process.env.JWT_EXP,
