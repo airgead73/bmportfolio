@@ -37,10 +37,33 @@ app.use(hpp());
 app.use(cors());
 app.use(mongoSanitize());
 const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 mins
+  //windowMs: 10 * 60 * 10000, // 10 mins
+  windowMs: 10 * 60 * 10,
   max: RATE_LIMIT
 });
 app.use(limiter);
+
+/**
+ * @desc VIEW ENGINE
+ */
+
+const {
+  truncate,
+  stripTags,
+  formatDate,
+  select
+} = require('./utils/hbs');
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.engine('hbs', exphbs({
+  handlebars: allowInsecurePrototypeAccess(Handlebars),
+  helpers: { truncate, stripTags, formatDate, select },
+  defaultLayout: 'main',
+  extname: '.hbs',
+  layoutsDir: __dirname + '/views/layouts',
+  partialsDir: __dirname + '/views/partials'
+}));
 
 /** 
  * @desc EXPRESS MIDDLEWARE
@@ -62,6 +85,9 @@ app.use(session({
  })
 }));
 
+/* bootstrap js */
+app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+
 /** 
  * @desc GLOBAL VARIABLES
  */
@@ -78,5 +104,42 @@ if (ISDEV) {
   const logger = require('morgan');
   app.use(logger('dev'));
 }
+
+/**
+ * @desc LOAD ROUTES
+ */
+
+// api
+app.use('/api/photos', require('./routes/api/photosRoutes'));
+app.use('/api/works', require('./routes/api/worksRoutes'));
+
+// client
+app.use('/', require('./routes/client/indexRoutes'));
+
+/**
+ * @desc ERROR HANDLING
+ */
+
+app.use(function(req, res, next) {
+  next(createError(404, 'Resource not found'))
+})
+
+app.use((error, req, res, next) => {
+
+  return res
+    .status(200)
+    .render('pages/error', {
+      success: false,
+      title: 'error',
+      status: error.status,
+      msg: error.message
+    });
+
+});
+
+
+/**
+ * @desc EXPORT
+ */
 
 module.exports = app;
