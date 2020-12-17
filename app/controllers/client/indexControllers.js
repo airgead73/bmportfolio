@@ -18,16 +18,48 @@ exports.landing = asyncHandler(async function(req, res, next) {
 });
 
 /**
- * @route   GET /about
- * @desc    view about page
+ * @route   GET /works
+ * @desc    view works page
  * @access  private
  */
+
+exports.works = asyncHandler(async function(req, res, next) {   
+
+  return res
+    .status(200)
+    .render('pages/works', {
+      success: true,
+      title: 'works'
+    });
+
+});
+
+/**
+ * @route   GET /:page
+ * @desc    view pages
+ * @access  private
+ */
+
+exports.pages = asyncHandler(async function(req, res, next) {
+
+  const { page } = req.params;
+
+  return res
+    .status(200)
+    .render('pages/index', {
+      success: true,
+      title: page
+    });
+
+});
 
 /**
  * @route   GET /signin
  * @desc    view signin page
  * @access  private
  */
+
+
 
 /**
  * @route   GET /works
